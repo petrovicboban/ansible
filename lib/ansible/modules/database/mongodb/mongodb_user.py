@@ -421,7 +421,6 @@ def main():
     except Exception as e:
         module.fail_json(msg='unable to connect to database: %s' % to_native(e), exception=traceback.format_exc())
  
-    ## CHANGE
     uinfo = user_find(client, user, db_name)
     if uinfo:
         roles_changed = check_if_roles_changed(uinfo, roles, db_name)
@@ -429,7 +428,6 @@ def main():
     else:
         roles_changed = True
         new_user = True
-    ##
 
 
     if state == 'present':
@@ -460,12 +458,8 @@ def main():
         except Exception as e:
             module.fail_json(msg='Unable to remove user: %s' % to_native(e), exception=traceback.format_exc())
 
-        ##ADDED
         module.exit_json(changed=True, user=user, roles_changed=True, new_user=False)
 
-
-
-    #module.exit_json(changed=True, user=user)
 
 
 if __name__ == '__main__':
